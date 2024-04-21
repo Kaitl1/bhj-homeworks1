@@ -17,10 +17,12 @@ class Game {
   }
 
   registerEvents() {
-    let myThis = this;
-    document.addEventListener('keydown', function(event) {
-      let currentSymbol = myThis.currentSymbol.textContent
-      event.key===currentSymbol?myThis.success():myThis.fail()
+    document.addEventListener('keydown', (event) => {
+      if (event.key === this.currentSymbol.textContent){
+        this.success()
+      } else {
+        this.fail()
+      }
     })
     /*
       TODO:
