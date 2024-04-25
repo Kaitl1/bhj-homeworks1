@@ -1,27 +1,14 @@
-let elements = document.getElementsByClassName('tab')
+let arrTabs = Array.from(document.getElementsByClassName('tab'))
+let arrContents = Array.from(document.getElementsByClassName('tab__content'))
 
-for (let i = 0; i < elements.length; i++){
-    elements[i].addEventListener('click', function (event){
-        clearActiveTab()
-        event.currentTarget.classList.add('tab_active')
-        changeText(i)
+arrTabs.forEach((el) => el.addEventListener('click',function (event){
+        if(el.classList.contains('tab_active')){
+            console.log(arrTabs.findIndex(el))
+                arrContents[arrTabs.findIndex(el)].classList.remove('tab__content_active')
+            el.classList.remove('tab_active')
+            // }
+        }
+    event.target.classList.add('tab_active')
+    arrContents[arrTabs.findIndex(event.target)].classList.add('tab__content_active')
     })
-}
-
-function clearActiveTab(){
-    for (let i = 0; i<elements.length;i++){
-        if(elements[i].classList.contains('tab_active')){
-            elements[i].classList.remove('tab_active')
-        }
-    }
-}
-
-function changeText(item){
-    let tabsContent = document.getElementsByClassName('tab__content')
-    for (let i = 0; i < tabsContent.length; i++) {
-        if (tabsContent[i].classList.contains('tab__content_active')) {
-            tabsContent[i].classList.remove('tab__content_active')
-        }
-    }
-    tabsContent[item].classList.add('tab__content_active')
-}
+)
